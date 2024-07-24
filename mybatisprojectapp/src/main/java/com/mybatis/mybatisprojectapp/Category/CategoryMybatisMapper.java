@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface CatecoryMybatisMapper {
+public interface CategoryMybatisMapper {
     void insert(CategoryDto dto);
 
     CategoryDto findById(long id);
@@ -20,3 +20,4 @@ public interface CatecoryMybatisMapper {
 
     List<CategoryDto> findAllByNameContains(String name);
 }
+

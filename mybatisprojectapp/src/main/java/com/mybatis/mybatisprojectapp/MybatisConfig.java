@@ -25,13 +25,13 @@ public class MybatisConfig {
         sqlSessionFactoryBean.setDataSource(dataSource);
         sqlSessionFactoryBean.setTypeAliasesPackage("com.mybatis.mybatisprojectapp");
         sqlSessionFactoryBean.setMapperLocations(
-                applicationContext.getResources("classpath:/mappers/**/*.xml"
+                applicationContext.getResources("classpath:/mapper/**/*.xml"
                 ));
         return sqlSessionFactoryBean.getObject();
     }
 
     @Bean
-    public SqlSessionTemplate sqlSesstion (SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

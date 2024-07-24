@@ -10,7 +10,7 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService{
 
     @Autowired
-    private CatecoryMybatisMapper catecoryMybatisMapper;
+    private CategoryMybatisMapper catecoryMybatisMapper;
 
     @Override
     public ICategory findById(Long id) {
