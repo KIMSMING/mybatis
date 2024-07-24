@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Old Title</title>
+</head>
+<body>
+    <form id = "form" name = "form" method = "post" action = "/ctweb/oldhtml/category_old_act">
+        <label for="id"></label><input type = "number" id = "id" name = "id"/>
+        <label for="name"></label><input type = "text" id = "name" name = "name" />
+        <input type = "submit" value = "전송" /><input type ="reset" value = "취소"/>
+    </form>
+    <div>
+        category List
+        <ul id = "categoryList">
+            <li>
+                <span>id</span>
+                <span> : </span>
+                <span>name</span>
+            </li>
+            <li th:each="item : ${itemList}">
+                <span th:text = "${item.id}"></span>
+                <span> : </span>
+                <span th:text = "${item.name}"></span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
