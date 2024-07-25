@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/ct")
 public class CategoryController {
-
-    private static Logger logger = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryServiceImpl categoryService;
@@ -85,7 +84,7 @@ public class CategoryController {
             if ( id == null || id <= 0 ) {
                 return ResponseEntity.badRequest().build();
             }
-            ICategory result = (ICategory) this.categoryService.findById(id);
+            ICategory result = this.categoryService.findById(id);
             if ( result == null ) {
                 return ResponseEntity.notFound().build();
             }
@@ -97,7 +96,7 @@ public class CategoryController {
     }
 
     @GetMapping("/nm/{name}")
-    public ResponseEntity<List<ICategory>> findByName(@PathVariable String name) {
+    public ResponseEntity<List<ICategory>> findAllByNameContains(@PathVariable String name) {
         try {
             if ( name == null || name.isEmpty() ) {
                 return ResponseEntity.badRequest().build();

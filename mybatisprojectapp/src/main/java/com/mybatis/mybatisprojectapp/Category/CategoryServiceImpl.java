@@ -10,15 +10,15 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService{
 
     @Autowired
-    private CategoryMybatisMapper catecoryMybatisMapper;
+    private CategoryMybatisMapper categoryMybatisMapper;
 
     @Override
     public ICategory findById(Long id) {
         if ( id == null || id <= 0 ){
             return null;
         }
-        CategoryDto dto = this.catecoryMybatisMapper.findById(id);
-        return dto;
+        CategoryDto find = this.categoryMybatisMapper.findById(id);
+        return find;
     }
 
     @Override
@@ -26,14 +26,14 @@ public class CategoryServiceImpl implements ICategoryService{
         if ( name == null || name.isEmpty() ){
             return null;
         }
-        CategoryDto dto= this.catecoryMybatisMapper.findByName(name);
-        return dto;
+        CategoryDto find = this.categoryMybatisMapper.findByName(name);
+        return find;
     }
 
     @Override
     public List<ICategory> getAllList() {
         List<ICategory> list = this.getICategoryList(
-                this.catecoryMybatisMapper.findAll()
+                this.categoryMybatisMapper.findAll()
         );
         return list;
     }
@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements ICategoryService{
         CategoryDto dto = new CategoryDto();
         dto.copyFields(category);
         dto.setId(0L);
-        this.catecoryMybatisMapper.insert(dto);
+        this.categoryMybatisMapper.insert(dto);
         return dto;
     }
 
@@ -76,7 +76,7 @@ public class CategoryServiceImpl implements ICategoryService{
         if ( find == null ){
             return false;
         }
-        this.catecoryMybatisMapper.deleteById(id);
+        this.categoryMybatisMapper.deleteById(id);
         return true;
     }
 
@@ -87,7 +87,7 @@ public class CategoryServiceImpl implements ICategoryService{
             return null;
         }
         find.copyFields(category);
-        this.catecoryMybatisMapper.update((CategoryDto) find);
+        this.categoryMybatisMapper.update((CategoryDto)find);
         return find;
     }
 
@@ -97,7 +97,7 @@ public class CategoryServiceImpl implements ICategoryService{
             return null;
         }
         List<ICategory> list = this.getICategoryList(
-                this.catecoryMybatisMapper.findAllByNameContains(name)
+                this.categoryMybatisMapper.findAllByNameContains(name)
         );
         return list;
     }

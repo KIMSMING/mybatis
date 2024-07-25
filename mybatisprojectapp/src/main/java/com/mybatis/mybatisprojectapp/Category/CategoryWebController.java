@@ -77,6 +77,9 @@ public class CategoryWebController {
     @GetMapping("/oldhtml/category_old_del")
     public String categoryOldDelete(@RequestParam Long id){
         try {
+            if(id == null || id <=0 ){
+                return "redirect:category_old";
+            }
             ICategory byId = this.categoryService.findById(id);
             if(byId == null){
                 return "redirect:category_old";

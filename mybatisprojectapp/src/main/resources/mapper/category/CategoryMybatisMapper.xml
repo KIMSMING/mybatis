@@ -14,8 +14,8 @@
     </update>
 
     <select id="findById" resultType="CategoryDto">
-        SELECT
-            id, name
+        SELECT id
+             , name
         FROM category_tb
         WHERE id = #{id}
     </select>
