@@ -16,46 +16,46 @@ public class CategoryController {
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
+//    private CategoryServiceImpl categoryService;
     private CategoryServiceImpl categoryService;
 
     @PostMapping
-    public ResponseEntity<ICategory> insert(@RequestBody CategoryDto dto){
+    public ResponseEntity<ICategory> insert(@RequestBody CategoryDto dto) {
         try {
-            if( dto == null ){
+            if ( dto == null ) {
                 return ResponseEntity.badRequest().build();
             }
             ICategory result = this.categoryService.insert(dto);
-            if ( result == null){
+            if ( result == null ) {
                 return ResponseEntity.badRequest().build();
             }
             return ResponseEntity.ok(result);
-        } catch ( Exception ex ){
+        } catch ( Exception ex ) {
             logger.error(ex.toString());
-//            return ResponseEntity.notFound().build();
             return ResponseEntity.badRequest().build();
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<ICategory>> getAll(){
+    public ResponseEntity<List<ICategory>> getAll() {
         try {
             List<ICategory> result = this.categoryService.getAllList();
             return ResponseEntity.ok(result);
-        } catch ( Exception ex ){
+        } catch ( Exception ex ) {
             logger.error(ex.toString());
             return ResponseEntity.badRequest().build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Long id){
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         try {
-            if ( id == null ){
+            if ( id == null ) {
                 return ResponseEntity.badRequest().build();
             }
-            Boolean result = this.categoryService.remove(id);
+            Boolean result = this.categoryService.delete(id);
             return ResponseEntity.ok(result);
-        } catch ( Exception ex ){
+        } catch ( Exception ex ) {
             logger.error(ex.toString());
             return ResponseEntity.badRequest().build();
         }
@@ -101,7 +101,9 @@ public class CategoryController {
             if ( name == null || name.isEmpty() ) {
                 return ResponseEntity.badRequest().build();
             }
-            List<ICategory> result = this.categoryService.findAllByNameContains(name);
+            SearchCategoryDto searchCategoryDto = SearchCategoryDto.builder()
+                    .name(name).page(1).build();
+            List<ICategory> result = this.categoryService.findAllByNameContains(searchCategoryDto);
             if ( result == null || result.size() <= 0 ) {
                 return ResponseEntity.notFound().build();
             }
@@ -111,5 +113,4 @@ public class CategoryController {
             return ResponseEntity.badRequest().build();
         }
     }
-
 }

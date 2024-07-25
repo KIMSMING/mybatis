@@ -2,10 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Old Title</title>
+    <title>Old Html</title>
     <link rel="stylesheet" href="/mazer/assets/compiled/css/app.css">
     <link rel="stylesheet" href="/mazer/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="/mazer/assets/compiled/css/iconly.css">
+    <style>
+        .float-end {
+            float: right !important;
+        }
+        .float-start {
+            float: left !important;
+        }
+        .float-start {
+            float:  !important;
+        }
+    </style>
 </head>
 <body>
     <form id="form" name="form" method="post" action="/ctweb/oldhtml/category_old_act">
@@ -14,35 +25,42 @@
         <input type="submit" value="전송"/><input type="reset" value="취소"/>
     </form>
     <div>
-        category List
-        <section id="content-types">
-            <div class="row">
-                <div class="col-xl-4 col-md-6 col-sm-12" th:each="item : ${itemList}">
-                    <div class="card">
-                        <a th:href="@{/ctweb/oldhtml/category_old_view(id=${item.id})}">
-                            <div class="card-content">
-                                <div class="card-body" th:text="${item.id}"></div>
-                                <div class="card-text" th:text="${item.name}"></div>
-                            </div>
-                        </a>
+        Category List
+    </div>
+    <section id="content-types">
+        <div class="row">
+            <div class="col-xl-4 col-md-6 col-sm-12" th:each="node : ${allList}">
+                <div class="card">
+                    <a th:href="@{/ctweb/oldhtml/category_old_view(id=${node.id})}">
+                    <div class="card-content">
+                        <div class="card-body" th:text="${node.id}"></div>
+                        <div class="card-text" th:text="${node.name}"></div>
                     </div>
+                    </a>
                 </div>
             </div>
-        </section>
-        <ul id="categoryList">
-            <li>
-                <span>id</span>
+        </div>
+    </section>
+    <div>page : [[${searchCategoryDto.page}]], search name = [[${searchCategoryDto.name}]]</div>
+    <ul id="categoryList">
+        <li>
+            <span>id</span>
+            <span> : </span>
+            <span>name</span>
+        </li>
+        <li th:each="item : ${allList}">
+            <a th:href="@{/ctweb/oldhtml/category_old_view(id=${item.id})}">
+                <span th:text="${item.id}"></span>
                 <span> : </span>
-                <span>name</span>
-            </li>
-            <li th:each="item : ${itemList}">
-                <a th:href="@{/ctweb/oldhtml/category_old_view(id=${item.id})}">
-                    <span th:text="${item.id}"></span>
-                    <span> : </span>
-                    <span th:text="${item.name}"></span>
-                </a>
-            </li>
-        </ul>
+                <span th:text="${item.name}"></span>
+            </a>
+        </li>
+    </ul>
+    <div class = "float-end">
+        <button>추가</button>
+    </div>
+    <div class = "float-start">
+        <button>뒤로</button>
     </div>
 </body>
 </html>

@@ -38,6 +38,8 @@
         SELECT id
             , name
         FROM category_tb
-        WHERE name like '%${name}%'
+        WHERE name like CONCAT('%',#{name},'%')
+        ORDER BY ${orderByWord}
+        LIMIT #{rowsOnePage} OFFSET #{firstIndex}
     </select>
 </mapper>
