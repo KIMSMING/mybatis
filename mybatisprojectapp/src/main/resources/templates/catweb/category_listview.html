@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>분류 관리 보기/ 수정/ 삭제 화면</title>
+    <style>
+        h1{
+            display: flex;
+            justify-content: center;
+            width: 500px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div><h1>분류 정보</h1></div>
+<form id="form" name="form" method="post" action="/catweb/category_list_update" th:object="${categoryDto}">
+    <input type="number" th:field="*{id}" readonly/>
+    <input type="text" th:field="*{name}"/>
+    <input type="submit" value="수정"/>
+    <input type="reset" value="원복"/>
+    <a th:href="@{/catweb/category_list_del(id=*{id})}">삭제</a>
+</form>
+</body>
+</html>
