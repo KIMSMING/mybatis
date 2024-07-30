@@ -21,7 +21,7 @@ public class CategoryNewController {
     }
 
     @GetMapping("/category_list")    // 브라우저의 URL 주소
-    public String categoryOld(Model model, @RequestParam String name, @RequestParam int page) {
+    public String categoryList(Model model, @RequestParam String name, @RequestParam int page) {
         try {
             if (name == null) {
                 name = "";
@@ -43,6 +43,11 @@ public class CategoryNewController {
 
     @GetMapping("/category_add")
     public String categoryAdd() {
+        try{
+
+        } catch (Exception ex){
+            log.error(ex.toString());
+        }
         return "catweb/category_add";  // 브라우저 주소를 redirect 한다.
     }
 
@@ -63,7 +68,7 @@ public class CategoryNewController {
     }
 
     @GetMapping("/category_list_view")    // 브라우저의 URL 주소
-    public String categoryOldView(Model model, @RequestParam Long id) {
+    public String categoryView(Model model, @RequestParam Long id) {
         try {
             if (id == null || id <= 0) {
                 model.addAttribute("error_message", "ID는 1보다 커야 합니다.");
@@ -84,7 +89,7 @@ public class CategoryNewController {
     }
 
     @PostMapping("/category_list_update")
-    public String categoryOldUpdate(Model model, @ModelAttribute CategoryDto categoryDto) {
+    public String categoryUpdate(Model model, @ModelAttribute CategoryDto categoryDto) {
         try {
             if (categoryDto == null || categoryDto.getId() <= 0 || categoryDto.getName().isEmpty()) {
                 model.addAttribute("error_message", "id는 1보다 커야하고, name 이 있어야 합니다.");

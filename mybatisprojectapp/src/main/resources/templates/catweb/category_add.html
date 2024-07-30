@@ -13,32 +13,58 @@
             let ret = confirm(name + " 추가 하시겠습니까 ?");
             return ret;
         }
+
+        const goBack = () => {
+            history.back();
+        }
     </script>
     <style>
-        #header{
+        #header {
+            margin-top: 100px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
+            border: solid #f2f7ff;
+            border-bottom-color: #6e8192;
+            padding-bottom: 80px;
         }
-        #left-box{
+
+        #left-box {
             float: left;
             width: 20%;
         }
-        #right-box{
-            float:right;
+
+        #right-box {
+            float: right;
             width: 20%;
             margin-right: 5%;
         }
-        p{
-            border-radius: 0.1rem;
-            border: 1px solid black;
-            height: 30px;
-            margin-left: 5%;
+
+        p {
+            font-weight: 700;
+            color: white;
+            border-radius: .25rem;
+            background-color: black;
+            height: 100px;
+            margin: 30px;
+            width: 300px;
+            top: 50%;
+            left: 50%;
+            font-size: 30px;
         }
-        #float-left{
-            float: left !important;
+        #name{
+            height: 80px;
+            border-radius: .25rem;
+            margin: 30px;
+            width: 900px;
+
         }
-        #float-right{
-            float: right !important;
+        button {
+            margin: 10px;
+            border-radius: .25rem;
+            background: #051b11;
+            color: white;
+            float: right;
         }
     </style>
 </head>
@@ -51,11 +77,10 @@
     <div id="right-box">
         <form id="form" name="form" method="post" action="/catweb/category_insert" onsubmit="return categoryInsert();">
             <label for="name"></label><input type="text" id="name" name="name"/>
-            <input id="float-left" type="button" value="뒤로" onClick="history.go(-1)">
-            <input id="float-right" type="submit" value="추가">
         </form>
     </div>
 </div>
-
+<button onclick="goBack();">뒤로</button>
+<button onclick="categoryInsert();">추가</button>
 </body>
 </html>
